@@ -22,9 +22,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Uppercase branch name
-        env:
-          branch_name: github.ref
         run: |
+          branch_name=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
           echo "BRANCH_NAME=${branch_name^^}" >>${GITHUB_ENV}
 
       # Runs a set of commands using the runners shell
